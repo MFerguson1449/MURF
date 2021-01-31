@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 
 bot.once('ready', () => {
+	console.log('Loading...');
 	console.log('*** BOT ONLINE ***');
 });
 
@@ -11,38 +12,35 @@ bot.login(botKey);
 
 // Server Greeting
 bot.on('guildMemberAdd', member => {
+  console.log(`${member} has joined the server`);
    const channel = member.guild.channels.cache.find(ch => ch.name === 'general');
    if (!channel) return;
-   channel.send(`Welcome to the server, ${member}`);
+   channel.send(`Welcome to the server ${member}!`);
  });
 
-// Ping Pong
+// Chat Commands
 bot.on('message', message => {
-   if (message.content === 'ping') {
-      message.channel.send('Pong!');
-   }
-})
-
-// Server Moderation
-bot.on('message', message => {
-   if (!message.guild) return;
-     const user = message.mentions.users.first();
-     if (user) {
-       const member = message.guild.member(user);
-       if (member) {
-         member
-           .kick('Optional reason that will display in the audit logs')
-           .then(() => {
-             message.reply(`Successfully kicked ${user.tag}`);
-           })
-           .catch(err => {
-             message.reply('I was unable to kick the member');
-             console.error(err);
-           });
-       } else {
-         message.reply("That user isn't in this guild!");
-       }
-     } else {
-       message.reply("You didn't mention the user to kick!");
-   }
+  console.log(`${ message.author.username }: ${ message.content }`);
+  if (message.content === '!ping') {
+    message.reply('Pong!');
+  } else if(message.content === '!avatar') {
+    message.reply(message.author.displayAdvatarURL);
+  } else if(message.content === '!dave') {
+    message.reply('https://www.youtube.com/watch?v=BQgdOsjArig')
+  } else if(message.content== '!flip') {
+    //flipCoin();
+    message.channel.send('Flipping a coin...');
+    message.channel.send(`It landed on ${flipCoin()}`)
+    }
 });
+
+// Coin Flip
+function flipCoin() {
+  const flipCalc = Math.floor(Math.random() * 2 + 1);
+  if(flipCalc === 1) {
+    flipResult = 'Heads';
+  } else {
+    flipResult = 'Tails';
+  }; 
+  return flipResult;
+}

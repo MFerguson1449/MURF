@@ -2,6 +2,7 @@ require('dotenv').config();
 const botKey = process.env.BOT_TOKEN; // Bot Token
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const { Client, MessageEmbed } = require('discord.js');
 
 bot.once('ready', () => {
 	console.log('Loading...');
@@ -27,11 +28,28 @@ bot.on('message', message => {
     message.reply(message.author.displayAdvatarURL);
   } else if(message.content === '!dave') {
     message.reply('https://www.youtube.com/watch?v=BQgdOsjArig')
-  } else if(message.content== '!flip') {
+  } else if(message.content ==='!portfolio') {
+		message.channel.send('Mike\'s Portfolio...');
+		message.channel.send('http://www.mikejferguson.com/');
+	} else if(message.content== '!flip') {
     //flipCoin();
     message.channel.send('Flipping a coin...');
     message.channel.send(`It landed on ${flipCoin()}`)
-    }
+  } // ! Help Menu 
+    else if(message.content == '!help') {
+      const embed = new MessageEmbed()
+        .setTitle('* * * M.U.R.F Commands * * *')
+        .setColor('#e91e63')
+        .setDescription("All commands must be LOWERCASE and led by a '!' (Ex. '!command')")
+        .addField(":exclamation:! avatar", ":white_small_square: - Returns a JPG of your Avatar", false)
+        .addField(":exclamation:! dave", ":white_small_square: - Fuck you Dave", false)
+        .addField(":exclamation:! portfolio", ":white_small_square: - Links you to Mike's Portfolio", false)
+        .addField(":exclamation:! flip", ":white_small_square: - Flip a coin and see who wins!", false)
+        .addField(":exclamation:! trivia", ":white_small_square: - Receive a random WoW related question! *[WIP]*", false)
+        .addField(":exclamation:! play", ":white_small_square: - Plays a YouTube video via URL/Search (type '!musichelp' for more commands) *[WIP]*" , false)
+        message.channel.send(embed);
+	}
+  
 });
 
 // Coin Flip

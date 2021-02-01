@@ -49,9 +49,9 @@ bot.on('message', message => {
         .setColor('#e91e63')
         .setDescription("All commands must be LOWERCASE and led by a '!' (Ex. '!command')")
         .addField(":exclamation:! avatar", ":white_small_square: - Returns a JPG of your Avatar", false)
-        .addField(":exclamation:! dave", ":white_small_square: - Fuck you Dave", false)
         .addField(":exclamation:! portfolio", ":white_small_square: - Links you to Mike's Portfolio", false)
-        .addField(":exclamation:! flip", ":white_small_square: - Flip a coin and see who wins!", false)
+        .addField(":exclamation:! flip", ":white_small_square: - Flip a coin!", false)
+        .addField(":exclamation:! d20", ":white_small_square: - Roll a D20 die!", false)
         .addField(":exclamation:! trivia", ":white_small_square: - Receive a random WoW related question! *[WIP]*", false)
         .addField(":exclamation:! play", ":white_small_square: - Plays a YouTube video via URL/Search. *[WIP]*" , false)
         message.channel.send(embed);

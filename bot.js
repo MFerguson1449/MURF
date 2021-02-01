@@ -19,6 +19,11 @@ bot.on('guildMemberAdd', member => {
    channel.send(`Welcome to the server ${member}!`);
  });
 
+ // BOT Presennce
+ bot.on('ready', () => {
+  bot.user.setPresence({ activity: { name: 'https://mikejferguson.com' }, status: 'online' })
+});
+
 // Chat Commands
 bot.on('message', message => {
   console.log(`${ message.author.username }: ${ message.content }`);
@@ -31,10 +36,12 @@ bot.on('message', message => {
   } else if(message.content ==='!portfolio') {
 		message.channel.send('Mike\'s Portfolio...');
 		message.channel.send('http://www.mikejferguson.com/');
-	} else if(message.content== '!flip') {
-    //flipCoin();
-    message.channel.send('Flipping a coin...');
-    message.channel.send(`It landed on ${flipCoin()}`)
+  } else if(message.content== '!flip') {
+    message.channel.send('**Flipping a coin...**');
+    message.channel.send(`It landed on ${flipCoin()}`);
+  } else if(message.content== '!d20') {
+    message.channel.send('**Rolling a d20!**');
+    message.channel.send(`It landed on ${d20()}`);
   } // ! Help Menu 
     else if(message.content == '!help') {
       const embed = new MessageEmbed()
@@ -46,7 +53,7 @@ bot.on('message', message => {
         .addField(":exclamation:! portfolio", ":white_small_square: - Links you to Mike's Portfolio", false)
         .addField(":exclamation:! flip", ":white_small_square: - Flip a coin and see who wins!", false)
         .addField(":exclamation:! trivia", ":white_small_square: - Receive a random WoW related question! *[WIP]*", false)
-        .addField(":exclamation:! play", ":white_small_square: - Plays a YouTube video via URL/Search (type '!musichelp' for more commands) *[WIP]*" , false)
+        .addField(":exclamation:! play", ":white_small_square: - Plays a YouTube video via URL/Search. *[WIP]*" , false)
         message.channel.send(embed);
 	}
   
@@ -61,4 +68,10 @@ function flipCoin() {
     flipResult = 'Tails';
   }; 
   return flipResult;
+};
+
+// Roll D20
+function d20() {
+  const rollCalc = Math.floor(Math.random() * 20 + 1);
+  return rollCalc;
 }

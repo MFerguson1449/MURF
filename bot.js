@@ -54,7 +54,7 @@ bot.on('message', message => {
         .addField(":exclamation:! portfolio", ":white_small_square: - Links you to Mike's Portfolio", false)
         .addField(":exclamation:! flip", ":white_small_square: - Flip a coin!", false)
         .addField(":exclamation:! d20", ":white_small_square: - Roll a D20 die!", false)
-        .addField(":exclamation:! trivia", ":white_small_square: - Receive a random WoW related question! *[WIP]*", false)
+        .addField(":exclamation:! trivia", ":white_small_square: - Receive a random WoW related question!", false)
         .addField(":exclamation:! play", ":white_small_square: - Plays a YouTube video via URL/Search. *[WIP]*" , false)
         message.channel.send(embed);
 	}

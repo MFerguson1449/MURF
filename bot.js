@@ -26,8 +26,9 @@ bot.on('guildMemberAdd', member => {
 
 // Chat Commands
 bot.on('message', message => {
-  console.log(`${ message.author.username }: ${ message.content }`);
-  if (message.content === '!ping') {
+  if (!message.author.bot) {
+    console.log(`${ message.author.username }: ${ message.content }`);
+  } else if (message.content === '!ping') {
     message.reply('Pong!');
   } else if(message.content === '!avatar') {
     message.reply(message.author.displayAdvatarURL);

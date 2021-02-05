@@ -4,10 +4,18 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const { Client, MessageEmbed } = require('discord.js');
 
+// Bot Ready
 bot.once('ready', () => {
-	console.log('Loading...');
-	console.log('*** BOT ONLINE ***');
-});
+	console.log(`
+
+  __    __     __  __     ______     ______  
+ /\\ "-./  \\   /\\ \\\/\\ \\   /\\  == \\   /\\  ___\\ 
+ \\ \\ \\-./\\ \\  \\ \\ \\\_\\ \\  \\ \\  __<   \\ \\  __\\ 
+  \\ \\\_\\ \\ \\\_\\  \\ \\_____\\  \\ \\_\\ \\\_\\  \\ \\\_\\   
+   \\/_/  \\/_/   \\/_____/   \\/_/ /_/   \\/_/   
+
+
+ `);});
 
 bot.login(botKey);
 
@@ -24,11 +32,21 @@ bot.on('guildMemberAdd', member => {
   bot.user.setPresence({ activity: { name: 'https://mikejferguson.com' }, status: 'online' })
 });
 
+// Chat Log
+bot.on('message', message => {
+  let time = new Date();
+  let dd = String(time.getDate()).padStart(2, '0');
+  let mm = String(time.getMonth() + 1).padStart(2, '0');
+  let yyyy = time.getFullYear();
+    if (!message.author.bot) {
+    console.log(`
+[${ mm + '/' + dd + '/' + yyyy }|${ time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() }] ${ message.author.username }: ${ message.content }`);
+  }
+});
+
 // Chat Commands
 bot.on('message', message => {
-  if (!message.author.bot) {
-    console.log(`${ message.author.username }: ${ message.content }`);
-  } else if (message.content === '!ping') {
+  if (message.content === '!ping') {
     message.reply('Pong!');
   } else if(message.content === '!avatar') {
     message.reply(message.author.displayAdvatarURL);

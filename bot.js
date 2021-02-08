@@ -38,9 +38,9 @@ bot.on('message', message => {
   let dd = String(time.getDate()).padStart(2, '0');
   let mm = String(time.getMonth() + 1).padStart(2, '0');
   let yyyy = time.getFullYear();
-    if (!message.author.bot) {
+  if (!message.author.bot) {
     console.log(`
-[${ mm + '/' + dd + '/' + yyyy }|${ time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() }] ${ message.author.username }: ${ message.content }`);
+[${ mm + '/' + dd + '/' + yyyy }|${ time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() }](${ message.guild.name }) ${ message.author.username }: ${ message.content }`);
   }
 });
 
@@ -49,7 +49,7 @@ bot.on('message', message => {
   if (message.content === '!ping') {
     message.reply('Pong!');
   } else if(message.content === '!avatar') {
-    message.reply(message.author.displayAdvatarURL);
+    message.reply(message.author.displayAvatarURL());
   } else if(message.content === '!trivia') {
     message.channel.send(`${randomTrivia()}`);
   } else if(message.content === '!dave') {

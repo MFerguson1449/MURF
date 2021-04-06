@@ -27,10 +27,10 @@ bot.on('guildMemberAdd', member => {
    channel.send(`Welcome to the server ${member}!`);
  });
 
- // BOT Presennce
- bot.on('ready', () => {
-  bot.user.setPresence({ activity: { name: 'https://mikejferguson.com' }, status: 'online' })
-});
+// BOT Presennce
+//  bot.on('ready', () => {
+//   bot.user.setPresence({ activity: { name: '' }, status: 'online' })
+// });
 
 // Chat Log
 bot.on('message', message => {

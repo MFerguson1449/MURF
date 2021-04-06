@@ -14,7 +14,7 @@ bot.once('ready', () => {
   \\ \\\_\\ \\ \\\_\\  \\ \\_____\\  \\ \\_\\ \\\_\\  \\ \\\_\\   
    \\/_/  \\/_/   \\/_____/   \\/_/ /_/   \\/_/   
 
-
+BOT Online!
  `);});
 
 bot.login(botKey);
@@ -60,10 +60,29 @@ bot.on('message', message => {
   } else if(message.content== '!flip') {
     message.channel.send('**Flipping a coin...**');
     message.channel.send(`It landed on ${flipCoin()}`);
+  } else if(message.content== '!d100') {
+    message.channel.send('**Rolling a d100!**');
+    message.channel.send(`It landed on ${rollDice(100)}`);
   } else if(message.content== '!d20') {
     message.channel.send('**Rolling a d20!**');
-    message.channel.send(`It landed on ${d20()}`);
-  } // ! Help Menu 
+    message.channel.send(`It landed on ${rollDice(20)}`);
+  }else if(message.content== '!d12') {
+    message.channel.send('**Rolling a d12!**');
+    message.channel.send(`It landed on ${rollDice(12)}`);
+  }else if(message.content== '!d10') {
+    message.channel.send('**Rolling a d10!**');
+    message.channel.send(`It landed on ${rollDice(10)}`);
+  }else if(message.content== '!d8') {
+    message.channel.send('**Rolling a d8!**');
+    message.channel.send(`It landed on ${rollDice(8)}`);
+  }else if(message.content== '!d6') {
+    message.channel.send('**Rolling a d6!**');
+    message.channel.send(`It landed on ${rollDice(6)}`);
+  }else if(message.content== '!d20') {
+    message.channel.send('**Rolling a d4!**');
+    message.channel.send(`It landed on ${rollDice(4)}`);
+  }
+  // ! Help Menu 
     else if(message.content == '!help') {
       const embed = new MessageEmbed()
         .setTitle('* * * M.U.R.F Commands * * *')
@@ -91,10 +110,10 @@ function flipCoin() {
   return flipResult;
 };
 
-// Roll D20
-function d20() {
-  const rollCalc = Math.floor(Math.random() * 20 + 1);
-  return rollCalc;
+// Roll D&D Dice
+function rollDice (diceMax) {
+  const rollResult = Math.floor(Math.random() * diceMax + 1)
+  return rollResult;
 };
 
 // Randomize Trivia Question

@@ -81,6 +81,17 @@ bot.on('message', message => {
   }else if(message.content== '!d20') {
     message.channel.send('**Rolling a d4!**');
     message.channel.send(`It landed on ${rollDice(4)}`);
+    // Set roles message
+  } else if(message.content== '!roles') {
+    const roleSelectorMessage = new MessageEmbed()
+      .setTitle('* * * Select Your Roles * * *')
+      .setDescription('Select all corresponding reactions to select your roles!')
+      .setColor('#e91e63')
+      .addField(`<:valheim:840754475111284766> -- Valheim`, 'Select this reaction below if you play Valheim', false)
+      .addField('<:WorldOfWarcraft:840754474549248000> -- World of Warcraft', 'Select this reaction below if you play World of Warcraft', false)
+      .addField('<:finalFantasy:840754474602463262> -- Final Fantasy', 'Select this reaction below if you play Final Fantasy', false)
+    message.channel.send(roleSelectorMessage);
+    //console.log(message)
   }
   // ! Help Menu 
     else if(message.content == '!help') {
@@ -93,8 +104,8 @@ bot.on('message', message => {
         .addField(":exclamation:! flip", ":white_small_square: - Flip a coin!", false)
         .addField(":exclamation:! d20", ":white_small_square: - Roll a D20 die!", false)
         .addField(":exclamation:! trivia", ":white_small_square: - Receive a random WoW related question!", false)
-        .addField(":exclamation:! play", ":white_small_square: - Plays a YouTube video via URL/Search. *[WIP]*" , false)
-        message.channel.send(embed);
+        .addField(":exclamation:! play", ":white_small_square: - Plays a YouTube video via URL/Search. *[WIP]*" , false);
+      message.channel.send(embed);
 	}
   
 });
@@ -112,7 +123,7 @@ function flipCoin() {
 
 // Roll D&D Dice
 function rollDice (diceMax) {
-  const rollResult = Math.floor(Math.random() * diceMax + 1)
+  const rollResult = Math.floor(Math.random() * diceMax + 1);
   return rollResult;
 };
 
@@ -123,6 +134,14 @@ function randomTrivia() {
   const randomQuestion = trivia.triviaQuestions[randomNumber].question;
   return randomQuestion;
 };
+
+
+
+// ! Set Roles ! 
+// Add reactions to the message
+// Listen for users to click on the reactions
+// Add corresponding roles depending which reactions are selected
+bot.setInterval('message' => )
 
 // Trivia Game
 // function triviaGame {
@@ -149,7 +168,7 @@ const trivia = {
   {
     "id": "trivia3",
     "question": "What was the name of the Legendary that dropped only once?",
-    "answer": "Talisan of Binding Shard"
+    "answer": "Talisman of Binding Shard"
   },
   {
       "id": "trivia4",
